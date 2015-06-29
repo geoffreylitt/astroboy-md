@@ -1,0 +1,40 @@
+//- index.jade
+extends ./layout.jade
+
+block row-content
+  div.container
+    div.row
+      div.col-lg-12.col-xs-12
+        div.row
+          div.header-container.col-lg-12.col-xs-12
+            h2.header-text Order a phone with Watson
+            p.header-sub-text To begin, tell Watson that you’d like to order a phone!
+          div.conversation-container.col-lg-12.col-xs-12
+            div.col-lg-12.col-md-12.col-xs-12.chat-box
+          div.col-lg-12.col-xs-12.text-center.start-over(style='display:none;')
+            a(href='/') Start Over
+          div.col-lg-12.col-xs-12.error(style='display:none;')
+            h3 Error
+            div.well
+              div.errorMsg
+    div.col-lg-12.loading.text-center
+      img.watson-loading-gif(src='images/loading-indicator.gif')
+    div.container.input-box.question-bar
+      div.row
+        div.col-lg-12.col-md-12.col-sm-12.col-xs-12
+          input.form-control.converse-text(type='text',
+            placeholder='Type a response and hit enter',
+            value='', autocomplete='off')
+
+  //- conversational templates
+  div(style='display:none')
+    div.chat-box--item_you.chat-box--item
+      div.img-container.avatar-container
+        img.avatar-chat(src='images/you.svg')
+      div.dialog
+        p.you-chat-text
+    div.chat-box--item_watson.chat-box--item
+      div.img-container.avatar-container
+        img.avatar-chat(src='images/watson.svg')
+      div.dialog
+        p.watson-chat-text
