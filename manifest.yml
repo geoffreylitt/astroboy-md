@@ -1,6 +1,6 @@
 declared-services:
   dialog-service:
-    label: dialog
+    label: watson_dialog_service
     plan: free
 applications:
 - services:
