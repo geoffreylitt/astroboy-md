@@ -20,21 +20,22 @@ var express  = require('express'),
   app        = express(),
   bluemix    = require('./config/bluemix'),
   extend     = require('util')._extend,
-  Dialog     = require('./dialog');
+  watson     = require('watson-developer-cloud');
 
 // Bootstrap application settings
 require('./config/express')(app);
 
 // if bluemix credentials exists, then override local
 var credentials =  extend({
-  url: '<url>',
   username: '<username>',
   password: '<password>',
-  dialog_id: '<dialog-id>'
-}, bluemix.getServiceCreds('dialog')); // VCAP_SERVICES
+  version: 'v1'
+}, bluemix.getServiceCreds('watson_dialog_service')); // VCAP_SERVICES
+
+var dialog_id = '<dialog-id>';
 
 // Create the service wrapper
-var dialog = new Dialog(credentials);
+var dialog = watson.dialog(credentials);
 
 // render index page
 app.get('/', function(req, res) {
@@ -42,7 +43,8 @@ app.get('/', function(req, res) {
 });
 
 app.post('/conversation', function(req, res, next) {
-  dialog.conversation(req.body, function(err, results) {
+  var params = extend({ dialog_id: dialog_id }, req.body);
+  dialog.conversation(params, function(err, results) {
     if (err)
       return next(err);
     else
