@@ -55,22 +55,35 @@
 }
 
 .chat-box--item .avatar-container {
-    margin-bottom: 1.3rem;
+    padding-top: 1.2rem;
 }
 .chat-box--item .avatar {
     width: 6rem;
     height: 6rem;
 }
-.chat-box--item .dialog {
-    width: 49rem;
-    min-height: 6rem;
-    margin: 0rem 2rem;
+.chat-box--item_watson .dialog {
+    width: calc(100% - 16rem);
+    margin-left: 2rem;
+/*    margin-right: 8rem;*/
+    min-height: 8rem;
     background-color: #f4f4f4;
     padding: 1.75rem;
+    display: table;
 }
+
+.chat-box--item_you .dialog {
+    width: calc(100% - 16rem);
+    margin-left: 8rem;
+    margin-right: 2rem;
+    min-height: 8rem;
+    background-color: #f4f4f4;
+    padding: 1.75rem;
+    display: table;
+}
+
 @media screen and (max-width: 695px) {
     .chat-box--item .dialog {
-        width: auto;
+      /*  width: auto;*/
     }
 }
 
@@ -91,7 +104,7 @@
 }
 
 .converse-text {
-    text-align: right;
+    text-align: left;
     border: 3px solid rgb(236, 236, 236);
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -164,10 +177,15 @@
 
 .you-chat-text {
     text-align: right;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
 }
 
 .watson-chat-text{
     text-align: left;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .watson-loading-gif{
@@ -180,7 +198,7 @@
 }
 
 .loading {
-    margin-top: -2rem;
+    margin-top: -1rem;
     z-index: 100;
 }
 
