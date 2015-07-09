@@ -32,7 +32,7 @@ var credentials =  extend({
   version: 'v1'
 }, bluemix.getServiceCreds('watson_dialog_service')); // VCAP_SERVICES
 
-var dialog_id = '<dialog-id>';
+var dialog_id = process.env.DIALOG_ID || '<dialog-id>';
 
 // Create the service wrapper
 var dialog = watson.dialog(credentials);
