@@ -43,6 +43,13 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     $ cf push
     ```
 
+  6. Add your `DIALOG_ID` and restage the app:
+
+    ```sh
+    $ cf se <application-name> DIALOG_ID <dialog-id>
+    $ cf restage <application-name>
+    ```
+
 For more information, including code snippets and references, see the full [Getting Started][getting_started] documentation.
 
 ## Running the application locally
@@ -71,7 +78,8 @@ For more information, including code snippets and references, see the full [Gett
      }]
     }
     }
-
+    ```
+  
   2. Install [Node.js](http://nodejs.org/).
   3. Go to the project folder in a terminal and run the `npm install` command.
   4. Start the application by running `node app.js`.
