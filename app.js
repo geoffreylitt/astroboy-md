@@ -18,6 +18,7 @@
 
 var express  = require('express'),
   app        = express(),
+  path       = require('path'),
   bluemix    = require('./config/bluemix'),
   extend     = require('util')._extend,
   watson     = require('watson-developer-cloud');
@@ -27,20 +28,16 @@ require('./config/express')(app);
 
 // if bluemix credentials exists, then override local
 var credentials =  extend({
+  url: '<url>',
   username: '<username>',
   password: '<password>',
   version: 'v1'
-}, bluemix.getServiceCreds('watson_dialog_service')); // VCAP_SERVICES
+}, bluemix.getServiceCreds('dialog')); // VCAP_SERVICES
 
 var dialog_id = process.env.DIALOG_ID || '<dialog-id>';
 
 // Create the service wrapper
 var dialog = watson.dialog(credentials);
-
-// render index page
-app.get('/', function(req, res) {
-  res.render('index');
-});
 
 app.post('/conversation', function(req, res, next) {
   var params = extend({ dialog_id: dialog_id }, req.body);
@@ -48,28 +45,22 @@ app.post('/conversation', function(req, res, next) {
     if (err)
       return next(err);
     else
+      res.json({ dialog_id: dialog_id, conversation: results});
+  });
+});
+
+app.post('/profile', function(req, res, next) {
+  var params = extend({ dialog_id: dialog_id }, req.body);
+  dialog.getProfile(params, function(err, results) {
+    if (err)
+      return next(err);
+    else
       res.json(results);
   });
 });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.code = 404;
-  err.message = 'Not Found';
-  next(err);
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  var error = {
-    code: err.code || 500,
-    error: err.message || err.error || 'There was a problem with the request, please try again'
-  };
-  console.log('error:', error);
-
-  res.status(error.code).json(error);
-});
+// error-handler settings
+require('./config/error-handler')(app);
 
 var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port);
