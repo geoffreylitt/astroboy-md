@@ -17,11 +17,11 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     ```none
     applications:
     - services:
-      - dialog-service
+      - dialog-service-beta
       name: <application-name>
       command: node app.js
       path: .
-      memory: 128M
+      memory: 256M
     ```
     
   4. Connect to Bluemix by running the following commands in the command-line tool:
