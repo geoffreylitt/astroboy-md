@@ -1,4 +1,4 @@
-# Dialog Node.js Starter Application
+# Dialog Node.js
 
   The Dialog starter application in Node.js is a sample that demonstrates how the IBM Watson [Dialog service][service_url] works in a specific context.
 
