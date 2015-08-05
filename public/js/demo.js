@@ -63,6 +63,7 @@ $(document).ready(function () {
         conversation_id = dialog.conversation.conversation_id;
         client_id = dialog.conversation.client_id;
 
+        console.log(dialog);
         var texts = dialog.conversation.response;
         var response = texts.join('&lt;br/&gt;'); // &lt;br/&gt; is <br/>
 
@@ -100,7 +101,7 @@ $(document).ready(function () {
       $profile.empty();
       data.name_values.forEach(function(par) {
         if (par.value !== '')
-          addProperty($profile, par.name, par.value);
+          addProperty($profile, par.name + ':', par.value);
       });
     });
   };
@@ -121,8 +122,10 @@ $(document).ready(function () {
 
   var talk = function(origin, text) {
     var $chatBox = $('.chat-box--item_' + origin).first().clone();
+    var $loading = $('.loader');
     $chatBox.find('p').html($('<p/>').html(text).text());
-    $('.chat-box--pane').append($chatBox);
+    // $('.chat-box--pane').append($chatBox);
+    $chatBox.insertBefore($loading);
     setTimeout(function() {
       $chatBox.removeClass('chat-box--item_HIDDEN');
     }, 100);

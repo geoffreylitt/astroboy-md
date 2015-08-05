@@ -34,7 +34,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   5. Create the Dialog service in Bluemix by running the following command:
 
     ```sh
-    $ cf create-service watson_dialog_service experimental dialog-service
+    $ cf create-service dialog beta dialog-service-beta
     ```
 
   6. Push it live by running the following command:
@@ -65,15 +65,15 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     System-Provided:
     {
     "VCAP_SERVICES": {
-      "watson_dialog_service": [{
+      "dialog": [{
           "credentials": {
             "url": "<url>",
             "password": "<password>",
             "username": "<username>"
           },
         "label": "dialog",
-        "name": "dialog-service",
-        "plan": "experimental"
+        "name": "dialog-service-beta",
+        "plan": "beta"
      }]
     }
     }
@@ -95,6 +95,7 @@ To troubleshoot your Bluemix app the main useful source of information are the l
 ## License
 
   This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
+  This sample uses jquery which is licensed under MIT.
 
 ## Contributing
 
@@ -106,3 +107,5 @@ To troubleshoot your Bluemix app the main useful source of information are the l
 [cloud_foundry]: https://github.com/cloudfoundry/cli
 [sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
 [service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/dialog/
+
+

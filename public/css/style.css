@@ -1072,7 +1072,6 @@ pre[class*=" language-"] {
 
 .chat-box {
   position: relative;
-  overflow-y: auto;
   height: 20rem; }
   .chat-box--pane {
     position: absolute;
@@ -1081,7 +1080,6 @@ pre[class*=" language-"] {
     overflow-y: scroll;
     height: 100%; }
   .chat-box--item {
-    margin-bottom: 0.5rem;
     transition: 0.4s;
     opacity: 1;
     visibility: visible;
@@ -1160,9 +1158,7 @@ pre[class*=" language-"] {
   margin-top: 0.2em; }
 
 .loader {
-  text-align: center;
-  position: absolute;
-  bottom: 4em; }
+  text-align: center; }
 
 @media (min-width: 768px) {
   ._demo--container {

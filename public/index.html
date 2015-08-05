@@ -100,7 +100,6 @@
 						</div>
 						<div class="chat-box--item_YOU chat-box--item chat-box--item_HIDDEN">
 							<div class="chat-box--container">
-
 								<div class="chat-box--message">
 									<div class="chat-box--message-vertical">
 										<p class="chat-box--message-text base--p">hello</p>
@@ -111,11 +110,12 @@
 								</div>
 							</div>
 						</div>
+						<!-- adding extra space hack -->
+						<div style="height: 15px; visibility: hidden;"></div>
+						<div class="loader">
+							<div class="loader--fallback"><img src="images/watson.gif" width="50" alt=""></div>
+						</div>
 					</div>
-				</div>
-
-				<div class="loader">
-				  <div class="loader--fallback"><img src="images/watson.gif" width="10%" alt=""> </div>
 				</div>
 
 				<input type="text" placeholder="Type a response and hit enter" value="" autocomplete="off" class="chat-window--message-input base--text-input">
@@ -159,6 +159,6 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
+  	<script type="text/javascript" src="js/demo.js"></script>
 </body>
 </html>
