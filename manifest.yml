@@ -1,5 +1,5 @@
 declared-services:
-  dialog-service:
+  dialog-service-beta:
     label: dialog
     plan: beta
 applications:
