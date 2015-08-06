@@ -80,8 +80,8 @@ $(document).ready(function () {
 
         getProfile();
       })
-      .fail(function onError(error) {
-        talk('WATSON', error.responseJSON.error);
+      .fail(function(error){
+        talk('WATSON', error.responseJSON ? error.responseJSON.error : error.statusText);
       })
       .always(function always(){
         $loading.hide();
@@ -103,6 +103,8 @@ $(document).ready(function () {
         if (par.value !== '')
           addProperty($profile, par.name + ':', par.value);
       });
+    }).fail(function(error){
+      talk('WATSON', error.responseJSON ? error.responseJSON.error : error.statusText);
     });
   };
 
