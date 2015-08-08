@@ -1,8 +1,13 @@
 # Dialog Node.js
 
   The Dialog starter application in Node.js is a sample that demonstrates how the IBM Watson [Dialog service][service_url] works in a specific context.
-
+<p align="center">
+<img src="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/img/service-gifs/dialog.gif" width="400">
+</p>
 **This application requires a dialog file to be preloaded. You can use the** [dialog-tool](https://github.com/watson-developer-cloud/dialog-tool) **to create a dialog.**
+
+
+
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
