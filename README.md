@@ -2,11 +2,12 @@
 
   The Dialog starter application in Node.js is a sample that demonstrates how the IBM Watson [Dialog service][service_url] works in a specific context.
 
+**This application requires a dialog file to be preloaded. You can use the** [dialog-tool](https://github.com/watson-developer-cloud/dialog-tool) **to create a dialog.**
+
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/dialog-nodejs)
 
-**Note:** You need to have a dialog templated in order to use this app. You can use the [dialog-tool](https://github.com/watson-developer-cloud/dialog-tool) to create and edit your dialog.
 
 
 ## Getting started
@@ -52,7 +53,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     $ cf se <application-name> DIALOG_ID <dialog-id>
     $ cf restage <application-name>
     ```
-
+   If you don't have a  `dialog_id` you can create one using the [dialog-tool](https://github.com/watson-developer-cloud/dialog-tool)
 
 ## Running the application locally
   The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/), so you must download and install them as part of the following steps.
