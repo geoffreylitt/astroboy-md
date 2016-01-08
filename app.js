@@ -40,7 +40,7 @@ var dialog_id_in_json = (function() {
   try {
     var dialogsFile = path.join(path.dirname(__filename), 'dialogs', 'dialog-id.json');
     var obj = JSON.parse(fs.readFileSync(dialogsFile));
-    return Object.keys(obj)[0];
+    return obj[Object.keys(obj)[0]].id;
   } catch (e) {
   }
 })();

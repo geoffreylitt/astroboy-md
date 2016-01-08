@@ -68,21 +68,21 @@ var dialogService = {
                 },
                 formData: formData
             },
-            function(error, reponse, body) {
+            function(error, response, body) {
 
                 if (error) {
                     cb(error);
                 } else {
-                    if (reponse.statusCode < 300) {
-                        if (reponse.statusCode === 201) {
+                    if (response.statusCode < 300) {
+                        if (response.statusCode === 201) {
                             var info = JSON.parse(body);
-                            id = info.id;
+                            id = info.dialog_id;
                         }
                         var pair = {};
                         pair[name] = id;
                         cb(null, pair);
                     } else {
-                        cb(new Error(':-( HTTP status: ' + reponse.statusCode));
+                        cb(new Error(':-( HTTP status: ' + response.statusCode));
                     }
                 }
             });
@@ -134,7 +134,7 @@ function updateDialogFiles(credentials) {
             var dialogsFile = path.join(path.dirname(__filename), 'dialog-id.json');
             fs.writeFileSync(dialogsFile, 
                              JSON.stringify(dialogFiles.get(), null, 4));
-            console.log(':-)');
+            console.log('dialog files processed');
         }
     }
 
