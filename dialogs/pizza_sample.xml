@@ -2069,7 +2069,6 @@
         <setting name="CONCEPTMATCHING" type="USER">0</setting>
         <setting name="UI_COLOUR"></setting>
         <setting name="USE_CONCEPTS">3</setting>
-        <setting name="PARENT_ACCOUNT">parentconcepts</setting>
         <setting name="AL_NONE_LABEL">None of the above</setting>
         <setting name="ASR_RANDOM">true</setting>
         <setting name="DYNAMIC_MESSAGING">false</setting>
