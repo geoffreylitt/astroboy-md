@@ -18,6 +18,7 @@
 
 var express  = require('express'),
   app        = express(),
+  fs         = require('fs'),
   path       = require('path'),
   bluemix    = require('./config/bluemix'),
   extend     = require('util')._extend,
@@ -34,7 +35,18 @@ var credentials =  extend({
   version: 'v1'
 }, bluemix.getServiceCreds('dialog')); // VCAP_SERVICES
 
-var dialog_id = process.env.DIALOG_ID || '<dialog-id>';
+
+var dialog_id_in_json = (function() {
+  try {
+    var dialogsFile = path.join(path.dirname(__filename), 'dialogs', 'dialog-id.json');
+    var obj = JSON.parse(fs.readFileSync(dialogsFile));
+    return obj[Object.keys(obj)[0]].id;
+  } catch (e) {
+  }
+})();
+
+
+var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || '<missing-dialog-id>';
 
 // Create the service wrapper
 var dialog = watson.dialog(credentials);

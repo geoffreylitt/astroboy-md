@@ -29,12 +29,15 @@
     "url": "https://github.com/watson-developer-cloud/dialog-nodejs/issues"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "node dialogs/install-dialogs.js"
   },
   "dependencies": {
+    "async": "^1.5.1",
     "body-parser": "~1.14.1",
     "errorhandler": "~1.4.1",
     "express": "~4.13.3",
+    "request": "^2.67.0",
     "watson-developer-cloud": "~1.0.6"
   }
 }
