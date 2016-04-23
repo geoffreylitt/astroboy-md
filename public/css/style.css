@@ -1209,6 +1209,34 @@ pre[class*=" language-"] {
       margin-left: 0;
       margin-right: 0%; } }
 
+#logo-container {
+  color: #fff;
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+  width: 200px;
+  text-align: right;
+}
+
+#logo-container h1 {
+  font-weight: 100;
+  font-size: 30px;
+  line-height: 0;
+}
+
+#logo-container h2 {
+  font-weight: 100;
+  font-size: 20px;
+}
+
+body {
+  background-image: url("/images/space-bg-2.jpg");
+  background-size: cover;
+}
+
 img.nasa-logo {
-  height: 50px;
+  width: 100px;
+  position: fixed;
+  top: 20px;
+  right: 50px;
 }
