@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <flow>
+        <folder label="Main">
+            <output>
+                <prompt selectionType="RANDOM">
+                    <item>How was your day today?</item>
+                    <item>Hey, how's it going?</item>
+                    <item>Hey there. How was your day?</item>
+                </prompt>
+                <goto ref="getUserInput_2442994"/>
+            </output>
+            <output>
+                <prompt selectionType="RANDOM">
+                    <item>Goodbye.</item>
+                </prompt>
+                <getUserInput id="getUserInput_2442994">
+                    <search ref="handleDiaryEntry"/>
+                </getUserInput>
+            </output>
+        </folder>
+        <folder label="Library">
+            <folder label="Live Content" id="handleDiaryEntry">
+                <input>
+                    <grammar>
+                        <item>*</item>
+                    </grammar>
+                    <action varName="Diary" operator="SET_TO_USER_INPUT"/>
+                    <goto ref="painYesNo" />
+                </input>
+            </folder>
+            <folder label="Live Content" id="painYesNo">
+                <output>
+                    <prompt selectionType="RANDOM">
+                        <item>Do you feel any pain?</item>
+                    </prompt>
+                    <getUserInput>
+                        <input>
+                            <grammar>
+                                <item>yes</item>
+                                <item>yep</item>
+                                <item>yeah</item>
+                            </grammar>
+                            <action varName="FeelsPain" operator="SET_TO_YES"></action>
+                            <goto ref="questionsAboutPain"/>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>no</item>
+                                <item>nah</item>
+                                <item>nope</item>
+                            </grammar>
+                            <action varName="FeelsPain" operator="SET_TO_NO"></action>
+                            <goto ref="otherPhysicalYesNo"/>
+                        </input>
+                    </getUserInput>
+                </output>
+            </folder>
+            <folder label="Live Content" id="questionsAboutPain">
+                <output>
+                    <prompt selectionType="RANDOM">
+                        <item>Alright. What are the places where you're feeling pain?</item>
+                    </prompt>
+                    <getUserInput>
+                        <input>
+                            <grammar>
+                                <item>*</item>
+                            </grammar>
+                            <action varName="PainPlaces" operator="SET_TO_USER_INPUT"/>
+                            <goto ref="otherPhysicalYesNo" />
+                        </input>
+                    </getUserInput>
+                </output>
+            </folder>
+            <folder label="Live Content" id="otherPhysicalYesNo">
+                <output>
+                    <prompt selectionType="RANDOM">
+                        <item>Do you have any other physical problems?</item>
+                    </prompt>
+                    <getUserInput>
+                        <input>
+                            <grammar>
+                                <item>yes</item>
+                                <item>yep</item>
+                                <item>yeah</item>
+                            </grammar>
+                            <action varName="HasPhysicalProblems" operator="SET_TO_YES"></action>
+                            <goto ref="questionsAboutPhysical"/>
+                        </input>
+                        <input>
+                            <grammar>
+                                <item>no</item>
+                                <item>nah</item>
+                                <item>nope</item>
+                            </grammar>
+                            <action varName="HasPhysicalProblems" operator="SET_TO_NO"></action>
+                            <goto ref="goodbye"/>
+                        </input>
+                    </getUserInput>
+                </output>
+            </folder>
+            <folder label="Live Content" id="questionsAboutPhysical">
+                <output>
+                    <prompt selectionType="RANDOM">
+                        <item>Alright. What are the other symptoms you're experiencing?</item>
+                    </prompt>
+                    <getUserInput>
+                        <input>
+                            <grammar>
+                                <item>*</item>
+                            </grammar>
+                            <action varName="PhysicalProblems" operator="SET_TO_USER_INPUT"/>
+                            <goto ref="goodbye" />
+                        </input>
+                    </getUserInput>
+                </output>
+            </folder>
+            <folder label="Live Content" id="goodbye">
+                <output>
+                    <prompt selectionType="RANDOM">
+                        <item>Thanks for chatting! Goodbye.</item>
+                    </prompt>
+                </output>
+            </folder>
+            <folder label="Storage"/>
+        </folder>
+        <folder label="Global"/>
+        <folder label="Concepts">
+            <concept>
+                <grammar>
+                    <item>positive</item>
+                    <item>good</item>
+                </grammar>
+            </concept>
+        </folder>
+    </flow>
+    <entities>
+    </entities>
+    <constants>
+    </constants>
+    <variables>
+        <var_folder name="Home">
+            <var name="Diary" type="TEXT"/>
+            <var name="FeelsPain" type="YESNO"/>
+            <var name="PainPlaces" type="TEXT"/>
+            <var name="HasPhysicalProblems" type="YESNO"/>
+            <var name="PhysicalProblems" type="TEXT"/>
+        </var_folder>
+    </variables>
+    <settings>
+    </settings>
+    <specialSettings>
+    </specialSettings>
+</dialog>
