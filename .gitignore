@@ -1,2 +1,3 @@
 node_modules
 /dialogs/dialog-id.json
+/.env

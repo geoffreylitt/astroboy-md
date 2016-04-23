@@ -22,7 +22,13 @@ var express  = require('express'),
   path       = require('path'),
   bluemix    = require('./config/bluemix'),
   extend     = require('util')._extend,
-  watson     = require('watson-developer-cloud');
+  watson     = require('watson-developer-cloud'),
+  Cloudant   = require('cloudant'),
+  _          = require('underscore');
+
+// Load env vars from the local .env file
+// (We use this for Cloudant credentials)
+require('dotenv').load();
 
 // Bootstrap application settings
 require('./config/express')(app);
@@ -53,13 +59,79 @@ var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || '<missing-dialog-i
 // Create the service wrapper
 var dialog = watson.dialog(credentials);
 
+// Set up Cloudant persistence
+var cloudant = Cloudant(process.env.cloudant_url);
+
+// Print available Cloudant DBs on boot as a sanity check
+cloudant.db.list(function(err, allDbs) {
+  console.log('All my databases: %s', allDbs.join(', '))
+});
+
+var chatSessions = cloudant.db.use('chat_sessions');
+
 app.post('/conversation', function(req, res, next) {
   var params = extend({ dialog_id: dialog_id }, req.body);
   dialog.conversation(params, function(err, results) {
-    if (err)
+    if (err) {
       return next(err);
-    else
+    }
+    else {
+      // No error, update the db with the latest conversation state.
+      // This all happens async, we can respond to the user before
+      // we actually save to the db.
+
+      dialog.getProfile(params, function(err, profile) {
+        if (err) {
+        } else {
+          // This comes back in the format:
+          //
+          // { name_values:
+          //    [ { name: 'Diary', value: 'it was great!' },
+          //      { name: 'FeelsPain', value: 'No' } ] }
+          var profileVars = profile.name_values;
+
+          var conversationId = String(results.conversation_id);
+
+          chatSessions.get(conversationId, { revs_info: true },
+            function (err, body) {
+              // We set the primary key on the chatSession database
+              // record to be the Watson conversation ID, so that any
+              // further updates will happen in-place to the existing
+              // conversation record.
+              var chatSession = {
+                _id: conversationId,
+              };
+
+              // IF we got an existing chat session from the db,
+              // use its rev to facilitate updating in place.
+              // (If not we can just ignore that)
+              if (!_.isUndefined(body)) {
+                chatSession["_rev"] = body["_rev"];
+              }
+
+              _.each(profileVars, function (profileVar) {
+                chatSession[profileVar.name] = profileVar.value;
+              });
+
+              console.log(chatSession);
+
+              // Insert the chat session into the database.
+              // Note that if we already have a record for this session
+              // we will update it in place because it's keyed by
+              // Watson conversation ID
+              chatSessions.insert(chatSession, function(err, body) {
+                if (!err)
+                  console.log(body);
+                else
+                  console.log(err);
+              })
+            }
+          );
+        }
+      });
+
       res.json({ dialog_id: dialog_id, conversation: results});
+    }
   });
 });
 
