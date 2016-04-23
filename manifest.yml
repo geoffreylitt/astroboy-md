@@ -1,3 +1,4 @@
+---
 declared-services:
   dialog-service:
     label: dialog
@@ -5,9 +6,10 @@ declared-services:
 applications:
 - services:
   - dialog-service
-  name: dialog-nodejs
+  name: dialog-nodejs-geoffreylitt-1312
   command: node app.js
   path: .
   memory: 512M
   env:
     NODE_ENV: production
+  host: dialog-nodejs-geoffreylitt-1312
