@@ -28,6 +28,7 @@ var express  = require('express'),
 require('./config/express')(app);
 
 // if bluemix credentials exists, then override local
+// (We've hardcoded credentials for this particular app here)
 var credentials =  extend({
   url: "https://gateway.watsonplatform.net/dialog/api",
   username: "1f63dfb5-5988-46d9-a414-0cd3529e4eb4",
@@ -45,7 +46,8 @@ var dialog_id_in_json = (function() {
   }
 })();
 
-
+// In production we get the dialog ID from an env var.
+// Locally we use the dialog ID that we stored in the local JSON file.
 var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || '<missing-dialog-id>';
 
 // Create the service wrapper
