@@ -1208,3 +1208,7 @@ pre[class*=" language-"] {
       float: left;
       margin-left: 0;
       margin-right: 0%; } }
+
+img.nasa-logo {
+  height: 50px;
+}

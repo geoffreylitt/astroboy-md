@@ -16,7 +16,8 @@ var async = require('async'),
     bluemix = require('../config/bluemix'),
     fs = require('fs'),
     path = require('path'),
-    request = require('request');
+    request = require('request'),
+    extend = require('util')._extend;
 
 var dialogService = {
     getDialogs: function(credentials, cb) {
@@ -132,7 +133,7 @@ function updateDialogFiles(credentials) {
             console.error('done :-(');
         } else {
             var dialogsFile = path.join(path.dirname(__filename), 'dialog-id.json');
-            fs.writeFileSync(dialogsFile, 
+            fs.writeFileSync(dialogsFile,
                              JSON.stringify(dialogFiles.get(), null, 4));
             console.log('dialog files processed');
         }
@@ -155,7 +156,7 @@ function updateDialogFiles(credentials) {
                         cb();
                     }
                 };
-                dialogService.setDialog(credentials, name, value.id, value.fullPath, 
+                dialogService.setDialog(credentials, name, value.id, value.fullPath,
                                         dialogProcessedCb);
             };
             async.forEachOf(dialogFiles.get(),
@@ -171,5 +172,11 @@ function updateDialogFiles(credentials) {
     }
 }
 
+var credentials =  extend({
+  url: "https://gateway.watsonplatform.net/dialog/api",
+  username: "1f63dfb5-5988-46d9-a414-0cd3529e4eb4",
+  password: "TwZXJR6GmQ1r",
+  version: 'v1'
+}, bluemix.getServiceCreds('dialog'));
 
-updateDialogFiles(bluemix.getServiceCreds('dialog'));
+updateDialogFiles(credentials);
