@@ -149,9 +149,40 @@ app.post('/profile', function(req, res, next) {
   });
 });
 
+// @author: Kodai Ito
+// add another page
+app.get('/detail', function (req, res) {
+  console.log(req);
+  fs.readFile(__dirname+"/public/detail.html", "utf-8", function(err, data){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(data);
+      res.end()
+    }
+  });
+});
+
+app.get('/john', function (req, res) {
+  console.log(req);
+  fs.readFile(__dirname+"/public/john.html", "utf-8", function(err, data){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(data);
+      res.end()
+    }
+  });
+});
+
 // error-handler settings
 require('./config/error-handler')(app);
 
 var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port);
 console.log('listening at:', port);
+
