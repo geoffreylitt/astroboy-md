@@ -69,6 +69,10 @@ cloudant.db.list(function(err, allDbs) {
 
 var chatSessions = cloudant.db.use('chat_sessions');
 
+app.get('/test', function (req, res) {
+  res.send('GET request to the test page');
+});
+
 app.post('/conversation', function(req, res, next) {
   var params = extend({ dialog_id: dialog_id }, req.body);
   dialog.conversation(params, function(err, results) {
