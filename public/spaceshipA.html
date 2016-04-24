@@ -87,8 +87,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>About spaceship a</h2>
-                <p>Landed from earth 2 years ago</p>
-                <img src="images/Depression.png" class="table" />
+                <img src="images/allscore.png" class="table" />
+                <p>Health score of everyone</p>
+                <img src="images/Emotional2.png" name="graph" />
+                <p>Transition of health score</p>
+                <input type="button" value="Change the score!" class="btn btn-default btn-lg" onclick="changegraph()">
                 <!-- <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
                 <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
                 <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p> -->
@@ -102,7 +105,8 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Relationship in the ship</h2>
-                    <img src="images/relationship.png" class="table" />
+                    <img src="images/relationofus.png" class="table" />
+                    <img src="images/relationmatrix2.png" class="table" />
                     <!-- <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a> -->
                 </div>
             </div>
@@ -114,14 +118,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Problem</h2>
-                <p>He says that he has stomachahe these days.</p>
-                <img src="images/stomacache.jpeg" class="table"/>
-                <p>Also, relationship in the ship is not good...</p>
+                <p>Relationship in the ship is not good...</p>
                 <p></p>
-                <p>If you want to see all of his answers, please click the button below!</p>
+                <p>If you want to know all of the astoronauts answers, please click the button below!</p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
-                        <a href="https://fb125a42-d467-4350-94a2-786220d53a1c-bluemix.cloudant.com/dashboard.html#/database/chat_sessions/1806133" class="btn btn-default btn-lg"> <span class="network-name">Database of john's answers</span></a>
+                        <a href="https://fb125a42-d467-4350-94a2-786220d53a1c-bluemix.cloudant.com/dashboard.html#/database/chat_sessions/1806133" class="btn btn-default btn-lg"> <span class="network-name">Database of all answers</span></a>
                     </li>
                     <!-- <li>
                         <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
@@ -160,6 +162,22 @@
     <script src="js/grayscale.js"></script>
 
 </body>
-
+<script>
+var count = 0;
+function changegraph(){
+    if (count%4==0){
+        document.graph.src="images/Physical2.png";
+        count += 1;
+    }else if(count%4==1){
+        document.graph.src="images/Depression2.png";
+        count += 1;
+    }else if(count%4==2){
+        document.graph.src="images/Anxiety2.png";
+        count += 1;
+    }else{
+        document.graph.src="images/Emotional2.png";
+        count += 1;
+    }
+}
+</script
 </html>
-ƒ
