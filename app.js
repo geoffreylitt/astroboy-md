@@ -179,6 +179,20 @@ app.get('/john', function (req, res) {
   });
 });
 
+app.get('/geoffrey', function (req, res) {
+  console.log(req);
+  fs.readFile(__dirname+"/public/geoffrey.html", "utf-8", function(err, data){
+    if(err){
+      res.send(err);
+    }
+    else{
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(data);
+      res.end()
+    }
+  });
+});
+
 app.get('/spaceshipA', function (req, res) {
   console.log(req);
   fs.readFile(__dirname+"/public/spaceshipA.html", "utf-8", function(err, data){
